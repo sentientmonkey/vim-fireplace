@@ -1060,7 +1060,7 @@ function! s:Eval(bang, line1, line2, count, args) abort
             \ . getline(line2)[0 : col2-1]
     endif
     if a:bang
-      exe line1.','.line2.'delete _'
+      " exe line1.','.line2.'delete _'
     endif
   endif
   if a:bang
@@ -1070,8 +1070,10 @@ function! s:Eval(bang, line1, line2, count, args) abort
         call append(a:line1, result)
         exe a:line1
       else
-        call append(a:line1-1, result)
-        exe a:line1-1
+        call append(line2, "; => " . result)
+        exe line2
+        " call append(a:line1-1, result)
+        " exe a:line1-1
       endif
     catch /^Clojure:/
     endtry
